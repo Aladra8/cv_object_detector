@@ -1,0 +1,75 @@
+# Classical Multi-Object Detection System Using ORB and OpenCV
+
+This project implements a classical computer vision pipeline using OpenCV to detect multiple known objects (such as power drills, sugar boxes, mustard bottle) in real-world images. The system is designed using feature matching and homography, without relying on deep learning techniques.
+
+## Project Objectives
+
+- Detect and localize known objects in real-world scenes.
+- Highlight each detected object using a bounding box and label.
+- Extend the system to handle multiple object types per scene.
+- Process all images in a given test set and produce corresponding outputs.
+- Maintain flexibility for evaluating individual or all object categories.
+
+
+## Features
+
+- ORB-based keypoint detection and feature matching.
+- Homography estimation to determine object position.
+- Use of binary masks for template region validation.
+- Template filtering using match score and mask overlap.
+- Automatic bounding box drawing and result annotation.
+- Export of detection results to bounding box text files.
+
+## Current Workflow
+
+1. For a given object category (e.g., "power_drill" or "sugar_box, "mustard_botttle"):
+   - Load all color templates and corresponding masks from the model folder.
+   - Detect ORB keypoints and descriptors in both templates and the scene.
+   - Match descriptors and compute homography to estimate location.
+   - Apply warped mask validation to confirm detection.
+   - Select and draw the best match (lowest distance and sufficient overlap).
+
+2. Output:
+   - Annotated scene images with bounding boxes.
+   - Detection result files containing object label and bounding box coordinates.
+
+## How to Build and Run
+
+1. Create a build directory and compile:
+
+   cd ~/cv_object_detector
+   rm -rf build 
+   mkdir build && cd build
+   cmake ..
+   make
+   ```
+
+2. Run the program:
+
+   ./main
+
+
+   This will process all test images for the configured object and save outputs in the `output/` directory.
+
+## Known Limitations
+
+- Matching performance varies with template quality and viewing angles.
+- Some standing sugar boxes may be missed even though templates exist.
+- Detection works better when object poses are consistent with templates.
+
+## Planned Improvements
+
+- Upgrade to full multi-object detection per scene.
+- Loop through all object categories and combine results.
+- Optional future work may explore improving robustness to occlusion or scale variance.
+
+## Dependencies
+
+- C++17
+- OpenCV 
+- CMake 
+
+##Notes
+- Only classical methods are used — no deep learning or neural networks.
+- Detection relies heavily on quality of template images and masks.
+- Some inaccuracies may occur for rotated, occluded, or small-scale objects.
