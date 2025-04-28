@@ -1,0 +1,9 @@
+sugar_box 333 116 543 166
+sugar_box 383 195 433 239
+sugar_box 370 162 401 252
+sugar_box 415 207 579 228
+sugar_box 514 137 546 323
+sugar_box 329 139 552 173
+sugar_box 462 200 545 251
+sugar_box 453 228 506 239
+sugar_box 488 185 500 233
